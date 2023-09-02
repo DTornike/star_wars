@@ -1,15 +1,17 @@
+import { IconChevronLeft } from "@tabler/icons-react";
 import { useQuery } from "@tanstack/react-query";
-import { Card } from "components/ui";
+import { Button, Card } from "components/ui";
 import { LoaderHoc } from "components/ui/Loader";
 import { Ships } from "pages/people-details/sections/Ships.tsx";
 import { Species } from "pages/people-details/sections/Species.tsx";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useApiService } from "services/api.ts";
-import { SWAPIModels } from "utils/constants.ts";
+import { ButtonTypes, RouteNames, SWAPIModels } from "utils/constants.ts";
 import { getIdFromUrl } from "utils/helpers";
 import { TPerson } from "utils/models";
 
 export const PeopleDetails = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const entityId = params.slug;
 
@@ -23,8 +25,20 @@ export const PeopleDetails = () => {
     },
   );
 
+  const handleGoBack = () => {
+    navigate(RouteNames.Home);
+  };
+
   return (
     <div className="flex flex-col gap-4">
+      <div>
+        <Button
+          label={"Go back"}
+          icon={<IconChevronLeft size={18} />}
+          variant={ButtonTypes.dotted}
+          onClick={handleGoBack}
+        />
+      </div>
       <Card>
         <LoaderHoc isLoading={isLoading}>
           <p className="text-headerOne text-left text-secondary mb-2">
