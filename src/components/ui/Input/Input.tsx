@@ -1,13 +1,14 @@
-import { InputHTMLAttributes, ReactNode, useState } from "react";
+import { ChangeEventHandler, ReactNode, useState } from "react";
 import { motion } from "framer-motion";
 
-interface IInput extends InputHTMLAttributes<any> {
+type TInput = {
   placeholder?: string;
   value?: string | number;
   label?: string;
   icon?: ReactNode;
   className?: string;
-}
+  onChange: ChangeEventHandler<HTMLInputElement>;
+};
 
 export const Input = ({
   value,
@@ -17,7 +18,7 @@ export const Input = ({
   className,
   onChange,
   ...props
-}: IInput) => {
+}: TInput) => {
   const [focused, setFocused] = useState(false);
 
   return (

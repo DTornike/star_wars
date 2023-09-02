@@ -1,4 +1,4 @@
-export type Character = {
+export type TCharacter = {
   id: number;
   name: string;
   birth_year: string;

@@ -1,17 +1,17 @@
 import { Input } from "components/ui";
 import { Search } from "components/icons";
 
-interface TableSearchProps {
+type TTableSearchProps = {
   className?: string;
   value?: string;
   setValue: (value: string) => void;
-}
+};
 
 export const TableSearch = ({
   className,
   value,
   setValue,
-}: TableSearchProps) => (
+}: TTableSearchProps) => (
   <div className={["h-full max-w-[250px] flex-1", className].join(" ")}>
     <Input
       placeholder={"Search"}

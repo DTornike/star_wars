@@ -16,9 +16,9 @@ import {
   Loader,
 } from "components/ui";
 import { useNavigate } from "react-router-dom";
-import { axiosClient } from "utils/constants.ts";
+import { axiosClient, RouteNames } from "utils/constants.ts";
 import { TDataResponse } from "utils/global-types.ts";
-import { Character } from "utils/models";
+import { TCharacter } from "utils/models";
 import { useQuery } from "@tanstack/react-query";
 import * as dayjs from "dayjs";
 
@@ -27,11 +27,11 @@ export const Home = () => {
 
   const [searchValue, setSearchValue] = useState("");
   const { data, isLoading } = useQuery([], () =>
-    axiosClient.get<TDataResponse<Character[]>>(`/people`),
+    axiosClient.get<TDataResponse<TCharacter[]>>(`/people`),
   );
 
-  const handleViewCharacter = () => {
-    navigate("");
+  const handleViewCharacter = (characterName: string) => {
+    navigate(`${RouteNames.Character}/${characterName}`);
   };
 
   return (
@@ -60,7 +60,10 @@ export const Home = () => {
               <TableBody>
                 {data?.data?.results.map((person) => {
                   return (
-                    <TableRow key={person.id} onClick={handleViewCharacter}>
+                    <TableRow
+                      key={person.name}
+                      onClick={() => handleViewCharacter(person.name)}
+                    >
                       <TableBodyCell>{person.name}</TableBodyCell>
                       <TableBodyCell>
                         <div className={"cursor-pointer hover:underline"}>
@@ -70,7 +73,7 @@ export const Home = () => {
                       <TableBodyCell>{person.height}</TableBodyCell>
                       <TableBodyCell>{person.gender}</TableBodyCell>
                       <TableBodyCell>
-                        {dayjs(person.created).format("DD/MM/YYYY")}
+                        {dayjs(person.created).format("DD/MM/YYYY hh:mm")}
                       </TableBodyCell>
                     </TableRow>
                   );

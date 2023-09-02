@@ -1,15 +1,15 @@
 import { PropsWithChildren } from "react";
 
-interface TableRowProps {
+type TTableRowProps = {
   onClick?: () => void;
   className?: string;
-}
+};
 
 export const TableRow = ({
   children,
   onClick,
   className = "",
-}: PropsWithChildren<TableRowProps>) => {
+}: PropsWithChildren<TTableRowProps>) => {
   return (
     <tr
       onClick={onClick}

@@ -1,33 +1,26 @@
 import { ReactNode } from "react";
+import { ButtonTypes } from "utils/constants.ts";
 import { Loader } from "../Loader/Loader.tsx";
 
-interface ButtonProps {
+type TButtonProps = {
   primary?: boolean;
   backgroundColor?: string;
   label: string | ReactNode;
   icon?: string | ReactNode;
   onClick?: () => void;
-  variant?: BUTTON_TYPES;
+  variant?: ButtonTypes;
   className?: string;
   loading?: boolean;
   disabled?: boolean;
-}
-
-export enum BUTTON_TYPES {
-  primary = "primary",
-  transparent = "transparent",
-  actions = "actionsActive",
-  actionsInactive = "actionsInactive",
-  dotted = "dotted",
-}
+};
 
 const types = {
-  [BUTTON_TYPES.primary]: "bg-primary text-white",
-  [BUTTON_TYPES.transparent]: "bg-transparent text-primary",
-  [BUTTON_TYPES.actions]: "bg-primary/10 text-primary text-paragraphOne",
-  [BUTTON_TYPES.actionsInactive]:
+  [ButtonTypes.primary]: "bg-primary text-white",
+  [ButtonTypes.transparent]: "bg-transparent text-primary",
+  [ButtonTypes.actions]: "bg-primary/10 text-primary text-paragraphOne",
+  [ButtonTypes.actionsInactive]:
     "bg-gray-seven/80 text-secondary text-paragraphOne",
-  [BUTTON_TYPES.dotted]:
+  [ButtonTypes.dotted]:
     "bg-transparent text-primary text-paragraphOne border-dashed border-primary/40 border-[1px]",
 };
 
@@ -35,12 +28,12 @@ export const Button = ({
   backgroundColor,
   label,
   icon,
-  variant = BUTTON_TYPES.primary,
+  variant = ButtonTypes.primary,
   className = "",
   disabled,
   loading,
   ...props
-}: ButtonProps) => {
+}: TButtonProps) => {
   return (
     <button
       type="button"

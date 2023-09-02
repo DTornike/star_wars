@@ -6,12 +6,12 @@ const spinTransition = {
   duration: 1,
 };
 
-interface ILoader {
+type TLoader = {
   size?: number;
   text?: string;
-}
+};
 
-export const Loader = ({ size = 35, text }: ILoader) => {
+export const Loader = ({ size = 35, text }: TLoader) => {
   return (
     <div className={"flex h-full w-full flex-col items-center justify-center"}>
       <div

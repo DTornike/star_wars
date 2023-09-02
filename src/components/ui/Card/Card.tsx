@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 
-interface ICard {
+type TCard = {
   children?: ReactNode;
   className?: string;
-}
+};
 
-export const Card = ({ children, className }: ICard) => {
+export const Card = ({ children, className }: TCard) => {
   return (
     <div
       className={[

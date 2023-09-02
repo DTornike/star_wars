@@ -1,1 +1,1 @@
-export type { Character } from "./Character";
+export type { TCharacter } from "./Character";
