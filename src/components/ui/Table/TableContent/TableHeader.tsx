@@ -1,11 +1,7 @@
 import { ReactNode } from "react";
 
-export const TableHeader = ({
-  children,
-  className = "",
-}: {
-  children?: ReactNode;
-  className?: string;
-}) => {
-  return <thead className={className}>{children}</thead>;
+export const TableHeader = ({ children }: { children?: ReactNode }) => {
+  return (
+    <thead className="bg-gray-100 rounded-sm overflow-hidden">{children}</thead>
+  );
 };

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import usePagination from "hooks/use-pagination.tsx";
 import { useCallback, useState } from "react";
-import { useGetEntityListService } from "services/api.ts";
+import { useApiService } from "services/api.ts";
 import { SWAPIModels, TABLE_ITEMS_PER_PAGE } from "utils/constants.ts";
 import { useDebounce } from "use-debounce";
 
@@ -26,7 +26,7 @@ type TUseTableResponse<T> = {
 };
 
 export const useTable = <T,>({ model }: TUseTable): TUseTableResponse<T> => {
-  const { getEntity } = useGetEntityListService<T>(model);
+  const { getEntityList } = useApiService<T>(model);
 
   const [searchValue, setSearchValue] = useState("");
   const [paginationData, setPaginationData] = useState({
@@ -42,7 +42,7 @@ export const useTable = <T,>({ model }: TUseTable): TUseTableResponse<T> => {
 
   const { data, isLoading } = useQuery(
     [model, debouncedSearchValue, paginationData.currentPage],
-    () => getEntity(searchValue, paginationData.currentPage),
+    () => getEntityList(searchValue, paginationData.currentPage),
     {
       onSuccess: (data) => {
         setPaginationData((prevState) => ({

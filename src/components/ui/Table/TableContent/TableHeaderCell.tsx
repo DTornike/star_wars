@@ -13,7 +13,7 @@ export const TableHeaderCell = ({
     <th
       onClick={onClick}
       className={[
-        "h-[28px] text-paragraph bg-gray-two text-secondary text-left px-[22px]",
+        "h-[28px] text-paragraph bg-gray-two text-secondary text-left p-3",
         className,
       ].join(" ")}
     >

@@ -1,4 +1,5 @@
 import {
+  Card,
   Loader,
   Pagination,
   Table,
@@ -32,7 +33,7 @@ export const Species = () => {
   });
 
   return (
-    <div>
+    <Card>
       <TableContainer>
         <TableTools>
           <TableToolsLeft>
@@ -51,16 +52,16 @@ export const Species = () => {
           </TableToolsRight>
         </TableTools>
         <>
-          <div className={"min-h-[300px]"}>
+          <div className={"min-h-[300px]  overflow-auto"}>
             <Table>
-              <TableHeader className=" border-2">
+              <TableHeader>
                 <TableHeaderRow>
                   <TableHeaderCell>NAME</TableHeaderCell>
                   <TableHeaderCell>AVERAGE HEIGHT</TableHeaderCell>
                   <TableHeaderCell>AVERAGE LIFESPAN</TableHeaderCell>
                   <TableHeaderCell>CLASSIFICATION</TableHeaderCell>
                   <TableHeaderCell>DESIGNATION</TableHeaderCell>
-                  <TableHeaderCell>CREATED</TableHeaderCell>
+                  <TableHeaderCell>CREATED AT</TableHeaderCell>
                 </TableHeaderRow>
               </TableHeader>
               <TableBody>
@@ -88,6 +89,6 @@ export const Species = () => {
           </div>
         </>
       </TableContainer>
-    </div>
+    </Card>
   );
 };

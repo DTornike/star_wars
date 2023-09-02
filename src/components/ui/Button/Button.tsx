@@ -37,12 +37,12 @@ export const Button = ({
   return (
     <button
       type="button"
-      disabled={loading}
+      disabled={loading || disabled}
       className={[
-        "active:box-shadow flex h-[44px] w-full items-center justify-center rounded-[4px] p-[14px] text-paragraphTwo font-medium hover:opacity-90",
+        "flex items-center justify-center rounded-[4px] p-2 text-paragraph font-medium hover:opacity-90",
         types[variant],
         disabled &&
-          "pointer-events-none cursor-default bg-primary-seven text-secondary-three",
+          "pointer-events-none cursor-default text-secondary opacity-50",
         className,
       ].join(" ")}
       style={{ backgroundColor }}

@@ -1,4 +1,5 @@
 import {
+  Card,
   Loader,
   Pagination,
   Table,
@@ -41,7 +42,7 @@ export const People = () => {
   };
 
   return (
-    <div>
+    <Card>
       <TableContainer>
         <TableTools>
           <TableToolsLeft>
@@ -60,9 +61,9 @@ export const People = () => {
           </TableToolsRight>
         </TableTools>
         <>
-          <div className={"min-h-[300px]"}>
+          <div className={"min-h-[300px]  overflow-auto"}>
             <Table>
-              <TableHeader className=" border-2">
+              <TableHeader>
                 <TableHeaderRow>
                   <TableHeaderCell>NAME</TableHeaderCell>
                   <TableHeaderCell>BIRTH DATE</TableHeaderCell>
@@ -81,11 +82,7 @@ export const People = () => {
                       }
                     >
                       <TableBodyCell>{person.name}</TableBodyCell>
-                      <TableBodyCell>
-                        <div className={"cursor-pointer hover:underline"}>
-                          {person.birth_year}
-                        </div>
-                      </TableBodyCell>
+                      <TableBodyCell>{person.birth_year}</TableBodyCell>
                       <TableBodyCell>{person.height}</TableBodyCell>
                       <TableBodyCell>{person.gender}</TableBodyCell>
                       <TableBodyCell>
@@ -104,6 +101,6 @@ export const People = () => {
           </div>
         </>
       </TableContainer>
-    </div>
+    </Card>
   );
 };

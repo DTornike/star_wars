@@ -3,6 +3,7 @@ export type TSpecies = {
   average_height: string;
   average_lifespan: string;
   classification: string;
+  language: string;
   designation: string;
   created: Date;
   url: string;

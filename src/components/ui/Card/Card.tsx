@@ -9,7 +9,7 @@ export const Card = ({ children, className }: TCard) => {
   return (
     <div
       className={[
-        "bg-white shadow w-full min-h-[100px] rounded flex justify-center items-center ",
+        "p-4 shadow flex-1 w-full min-h-[100px] rounded",
         className,
       ].join(" ")}
     >

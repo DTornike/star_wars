@@ -8,7 +8,6 @@ const axiosClient: AxiosInstance = axios.create({
 
 enum ButtonTypes {
   primary = "primary",
-  secondary = "secondary",
   transparent = "transparent",
   actions = "actionsActive",
   actionsInactive = "actionsInactive",
@@ -16,8 +15,9 @@ enum ButtonTypes {
 }
 
 enum RouteNames {
-  Home = "home",
+  Home = "/",
   People = "people",
+  Species = "species",
 }
 
 enum SWAPIModels {

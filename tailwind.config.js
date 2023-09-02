@@ -9,6 +9,7 @@ const COLOR_NAMES = {
 const COLORS = {
   [COLOR_NAMES.primary]: {
     DEFAULT: "#F26C4C",
+    light: "#e8c2bc",
   },
   [COLOR_NAMES.secondary]: {
     DEFAULT: "#524F67",
@@ -33,9 +34,9 @@ const colors = {
 };
 
 const fontSize = {
-  captions: "10px",
-  paragraph: "12px",
-  headerOne: "16px",
+  captions: "12px",
+  paragraph: "14px",
+  headerOne: "20px",
 };
 
 const fontFamily = {
@@ -53,7 +54,8 @@ const container = {
 };
 
 const boxShadow = {
-  DEFAULT: "0px 9px 34px #CBBBBB19;",
+  DEFAULT: "3px 3px 11px #d7d7d7",
+  sm: "3px 3px 34px #d7d7d7;",
 };
 
 const borderRadius = {

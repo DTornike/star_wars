@@ -17,7 +17,7 @@ const PaginationItem = ({
   <Button
     label={children}
     className={
-      "flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-sm p-0 shadow"
+      "flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-sm p-0 shadow-sm"
     }
     variant={active ? ButtonTypes.primary : ButtonTypes.transparent}
     disabled={disabled}

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const spinTransition = {
-  loop: Infinity,
+  repeat: Infinity,
   ease: "linear",
   duration: 1,
 };

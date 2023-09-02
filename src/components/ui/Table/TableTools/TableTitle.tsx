@@ -7,8 +7,12 @@ export const TableTitle = ({
 }) => {
   return (
     <div className="h-full flex items-center gap-2">
-      <span className={"text-header font-medium text-secondary"}>{title}</span>{" "}
-      {!!count && <span className={"text-header text-gray"}>({count})</span>}
+      <span className={"text-headerOne font-medium text-secondary"}>
+        {title}
+      </span>{" "}
+      {!!count && (
+        <span className={"text-headerOne text-secondary"}>({count})</span>
+      )}
     </div>
   );
 };
