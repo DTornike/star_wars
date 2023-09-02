@@ -1,15 +1,18 @@
 import { useCallback, useMemo } from "react";
-import { axiosClient } from "utils/constants.ts";
+import { axiosClient, SWAPIModels } from "utils/constants.ts";
 import { TListDataResponse } from "utils/global-types.ts";
-import { TPerson } from "utils/models/Person.ts";
 
-export const usePersonsService = () => {
-  const getList = useCallback(async () => {
-    const { data } =
-      await axiosClient.get<TListDataResponse<TPerson[]>>(`persons`);
+export const useGetEntityListService = <T>(model: SWAPIModels) => {
+  const getEntity = useCallback(
+    async (searchValue?: string, page?: number) => {
+      const { data } = await axiosClient.get<TListDataResponse<T[]>>(
+        `${model}?search=${searchValue}`,
+      );
 
-    return data ?? {};
-  }, []);
+      return data;
+    },
+    [model],
+  );
 
-  return useMemo(() => ({ getPersons }), [getPersons]);
+  return useMemo(() => ({ getEntity }), [getEntity]);
 };

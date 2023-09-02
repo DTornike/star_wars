@@ -18,31 +18,22 @@ import {
 import dayjs from "dayjs";
 import { useTable } from "hooks";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { RouteNames, SWAPIModels } from "utils/constants.ts";
-import { getIdFromUrl } from "utils/helpers";
-import { TPerson } from "utils/models";
+import { SWAPIModels } from "utils/constants.ts";
+import { TSpecies } from "utils/models";
 
-// TODO: create AdvancedTable component which takes cols, data, pagination and draws a table
-export const Home = () => {
-  const navigate = useNavigate();
-  const { tableData, tableLoading, pagination } = useTable<TPerson>({
-    model: SWAPIModels.People,
-  });
-
+export const Species = () => {
   const [searchValue, setSearchValue] = useState("");
 
-  const handleViewCharacter = (characterName?: string | null) => {
-    if (!characterName) return;
-    navigate(`${RouteNames.People}/${characterName}`);
-  };
+  const { tableData, tableLoading, pagination } = useTable<TSpecies>({
+    model: SWAPIModels.Species,
+  });
 
   return (
     <div>
       <TableContainer>
         <TableTools>
           <TableToolsLeft>
-            <TableTitle title="Characters" count={pagination.totalItems} />
+            <TableTitle title="Species" count={pagination.totalItems} />
           </TableToolsLeft>
           <TableToolsRight>
             <TableSearch value={searchValue} setValue={setSearchValue} />
@@ -54,29 +45,22 @@ export const Home = () => {
               <TableHeader className=" border-2">
                 <TableHeaderRow>
                   <TableHeaderCell>NAME</TableHeaderCell>
-                  <TableHeaderCell>BIRTH DATE</TableHeaderCell>
-                  <TableHeaderCell>HEIGHT</TableHeaderCell>
-                  <TableHeaderCell>GENDER</TableHeaderCell>
-                  <TableHeaderCell>CREATED AT</TableHeaderCell>
+                  <TableHeaderCell>AVERAGE HEIGHT</TableHeaderCell>
+                  <TableHeaderCell>AVERAGE LIFESPAN</TableHeaderCell>
+                  <TableHeaderCell>CLASSIFICATION</TableHeaderCell>
+                  <TableHeaderCell>DESIGNATION</TableHeaderCell>
+                  <TableHeaderCell>CREATED</TableHeaderCell>
                 </TableHeaderRow>
               </TableHeader>
               <TableBody>
                 {tableData.map((person) => {
                   return (
-                    <TableRow
-                      key={person.url}
-                      onClick={() =>
-                        handleViewCharacter(getIdFromUrl(person.url))
-                      }
-                    >
+                    <TableRow key={person.url}>
                       <TableBodyCell>{person.name}</TableBodyCell>
-                      <TableBodyCell>
-                        <div className={"cursor-pointer hover:underline"}>
-                          {person.birth_year}
-                        </div>
-                      </TableBodyCell>
-                      <TableBodyCell>{person.height}</TableBodyCell>
-                      <TableBodyCell>{person.gender}</TableBodyCell>
+                      <TableBodyCell>{person.average_height}</TableBodyCell>
+                      <TableBodyCell>{person.average_lifespan}</TableBodyCell>
+                      <TableBodyCell>{person.classification}</TableBodyCell>
+                      <TableBodyCell>{person.designation}</TableBodyCell>
                       <TableBodyCell>
                         {dayjs(person.created).format("DD/MM/YYYY hh:mm")}
                       </TableBodyCell>
