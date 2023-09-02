@@ -5,4 +5,5 @@ export type TCharacter = {
   height: string;
   gender: "male" | "female" | "n/a";
   created: Date;
+  url: string;
 };

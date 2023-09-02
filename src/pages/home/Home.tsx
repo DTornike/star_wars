@@ -14,13 +14,14 @@ import {
   TableToolsRight,
   TableTitle,
   Loader,
+  Pagination,
 } from "components/ui";
 import { useNavigate } from "react-router-dom";
 import { axiosClient, RouteNames } from "utils/constants.ts";
 import { TDataResponse } from "utils/global-types.ts";
 import { TCharacter } from "utils/models";
 import { useQuery } from "@tanstack/react-query";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -61,8 +62,12 @@ export const Home = () => {
                 {data?.data?.results.map((person) => {
                   return (
                     <TableRow
-                      key={person.name}
-                      onClick={() => handleViewCharacter(person.name)}
+                      key={person.url}
+                      onClick={() =>
+                        handleViewCharacter(
+                          person.url.charAt(person.url.length),
+                        )
+                      }
                     >
                       <TableBodyCell>{person.name}</TableBodyCell>
                       <TableBodyCell>
@@ -87,12 +92,11 @@ export const Home = () => {
             )}
           </div>
           <TableTools>
-            {/*<Pagination*/}
-            {/*  totalPageCount={totalPages}*/}
-            {/*  currentPage={filters.page}*/}
-            {/*  itemsPerPage={ITEMS_PER_PAGE}*/}
-            {/*  onPageChange={(page) => setPage(page)}*/}
-            {/*/>*/}
+            <Pagination
+              paginationRange={[0, "---", 3, 4, 5, 6, 7, "---", 10]}
+              currentPage={3}
+              onPageChange={(page) => console.log(page)}
+            />
           </TableTools>
         </>
       </TableContainer>
