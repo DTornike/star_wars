@@ -17,14 +17,17 @@ import {
 } from "components/ui";
 import dayjs from "dayjs";
 import { useTable } from "hooks";
-import { useState } from "react";
 import { SWAPIModels } from "utils/constants.ts";
 import { TSpecies } from "utils/models";
 
 export const Species = () => {
-  const [searchValue, setSearchValue] = useState("");
-
-  const { tableData, tableLoading, pagination } = useTable<TSpecies>({
+  const {
+    tableData,
+    tableLoading,
+    tableSearchValue,
+    setTableSearchValue,
+    pagination,
+  } = useTable<TSpecies>({
     model: SWAPIModels.Species,
   });
 
@@ -35,8 +38,16 @@ export const Species = () => {
           <TableToolsLeft>
             <TableTitle title="Species" count={pagination.totalItems} />
           </TableToolsLeft>
+        </TableTools>
+        <TableTools>
+          <TableToolsLeft>
+            <TableSearch
+              value={tableSearchValue}
+              setValue={setTableSearchValue}
+            />
+          </TableToolsLeft>
           <TableToolsRight>
-            <TableSearch value={searchValue} setValue={setSearchValue} />
+            <Pagination {...pagination} />
           </TableToolsRight>
         </TableTools>
         <>
@@ -70,14 +81,11 @@ export const Species = () => {
               </TableBody>
             </Table>
             {tableLoading && (
-              <div className="py-4">
+              <div className="py-4 h-[410px]">
                 <Loader />
               </div>
             )}
           </div>
-          <TableTools>
-            <Pagination {...pagination} />
-          </TableTools>
         </>
       </TableContainer>
     </div>

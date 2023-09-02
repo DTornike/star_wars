@@ -47,11 +47,16 @@ export const People = () => {
           <TableToolsLeft>
             <TableTitle title="Characters" count={pagination.totalItems} />
           </TableToolsLeft>
-          <TableToolsRight>
+        </TableTools>
+        <TableTools>
+          <TableToolsLeft>
             <TableSearch
               value={tableSearchValue}
               setValue={setTableSearchValue}
             />
+          </TableToolsLeft>
+          <TableToolsRight>
+            <Pagination {...pagination} />
           </TableToolsRight>
         </TableTools>
         <>
@@ -92,14 +97,11 @@ export const People = () => {
               </TableBody>
             </Table>
             {tableLoading && (
-              <div className="py-4">
+              <div className="py-4 h-[410px]">
                 <Loader />
               </div>
             )}
           </div>
-          <TableTools>
-            <Pagination {...pagination} />
-          </TableTools>
         </>
       </TableContainer>
     </div>

@@ -8,6 +8,7 @@ const axiosClient: AxiosInstance = axios.create({
 
 enum ButtonTypes {
   primary = "primary",
+  secondary = "secondary",
   transparent = "transparent",
   actions = "actionsActive",
   actionsInactive = "actionsInactive",
@@ -28,4 +29,12 @@ enum SWAPIModels {
   Starships = "starships",
 }
 
-export { axiosClient, ButtonTypes, RouteNames, SWAPIModels };
+const TABLE_ITEMS_PER_PAGE = 10;
+
+export {
+  axiosClient,
+  ButtonTypes,
+  RouteNames,
+  SWAPIModels,
+  TABLE_ITEMS_PER_PAGE,
+};

@@ -19,58 +19,43 @@ export const Pagination = ({
   const lastPage = range[range.length - 1] as number;
 
   return (
-    <div className={"w-full"}>
-      <hr className={"mb-2 border"} />
-      <div className={"flex w-full justify-end gap-1"}>
-        {/*<PaginationItem*/}
-        {/*  disabled={currentPage === 0}*/}
-        {/*  onClick={() => {*/}
-        {/*    onPageChange(0);*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  <IconChevronsLeft size={14} />*/}
-        {/*</PaginationItem>*/}
-        <PaginationItem
-          disabled={currentPage === 0}
-          onClick={() => {
-            onChange(currentPage - 1);
-          }}
-        >
-          <IconChevronLeft size={14} />
-        </PaginationItem>
-        {range.map((pageNumber) => {
-          // Just to display dots
-          if (typeof pageNumber === "string") {
-            return <div className="px-2 text-gray">&#8230;</div>;
-          }
-
+    <div className={"flex w-full justify-end gap-1"}>
+      <PaginationItem
+        disabled={currentPage === 0}
+        onClick={() => {
+          onChange(currentPage - 1);
+        }}
+      >
+        <IconChevronLeft size={14} />
+      </PaginationItem>
+      {range.map((pageNumber, i) => {
+        // Just to display dots
+        if (typeof pageNumber === "string") {
           return (
-            <PaginationItem
-              key={pageNumber}
-              active={pageNumber === currentPage}
-              onClick={() => onChange(pageNumber)}
-            >
-              {pageNumber + 1}
-            </PaginationItem>
+            <div key={`${pageNumber}-${i}`} className="px-2 text-gray">
+              &#8230;
+            </div>
           );
-        })}
-        <PaginationItem
-          disabled={currentPage === lastPage}
-          onClick={() => {
-            onChange(currentPage + 1);
-          }}
-        >
-          <IconChevronRight size={14} />
-        </PaginationItem>
-        {/*<PaginationItem*/}
-        {/*  disabled={currentPage === lastPage}*/}
-        {/*  onClick={() => {*/}
-        {/*    onPageChange(lastPage);*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  <IconChevronsRight size={14} />*/}
-        {/*</PaginationItem>*/}
-      </div>
+        }
+
+        return (
+          <PaginationItem
+            key={pageNumber}
+            active={pageNumber === currentPage}
+            onClick={() => onChange(pageNumber)}
+          >
+            {pageNumber + 1}
+          </PaginationItem>
+        );
+      })}
+      <PaginationItem
+        disabled={currentPage === lastPage}
+        onClick={() => {
+          onChange(currentPage + 1);
+        }}
+      >
+        <IconChevronRight size={14} />
+      </PaginationItem>
     </div>
   );
 };
