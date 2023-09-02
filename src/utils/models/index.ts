@@ -1,1 +1,1 @@
-export type { TCharacter } from "./Character";
+export type { TPerson } from "./Person.ts";

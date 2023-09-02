@@ -8,12 +8,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<PageContainer />}>
         <Route path="/" element={<Home />} />
-        <Route path={RouteNames.Character} element={<Details />}>
-          <Route
-            path={`${RouteNames.Character}/:slug`}
-            element={<div>hm</div>}
-          />
-        </Route>
+        <Route path={`${RouteNames.People}/:slug`} element={<Details />} />
       </Route>
     </Routes>
   </Router>

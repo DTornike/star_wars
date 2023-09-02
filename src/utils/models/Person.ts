@@ -1,5 +1,4 @@
-export type TCharacter = {
-  id: number;
+export type TPerson = {
   name: string;
   birth_year: string;
   height: string;

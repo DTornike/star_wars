@@ -1,3 +1,7 @@
 export const Header = () => {
-  return <nav className="p-4 flex bg-[#FCA510]">HEADER</nav>;
+  return (
+    <div className="bg-primary text-white h-[60px] mb-4 flex place-items-center">
+      <div className="container">Logo</div>
+    </div>
+  );
 };

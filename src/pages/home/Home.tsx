@@ -1,5 +1,6 @@
-import { useState } from "react";
 import {
+  Loader,
+  Pagination,
   Table,
   TableBody,
   TableBodyCell,
@@ -9,30 +10,31 @@ import {
   TableHeaderRow,
   TableRow,
   TableSearch,
+  TableTitle,
   TableTools,
   TableToolsLeft,
   TableToolsRight,
-  TableTitle,
-  Loader,
-  Pagination,
 } from "components/ui";
-import { useNavigate } from "react-router-dom";
-import { axiosClient, RouteNames } from "utils/constants.ts";
-import { TDataResponse } from "utils/global-types.ts";
-import { TCharacter } from "utils/models";
-import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
+import { useTable } from "hooks";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { RouteNames, SWAPIModels } from "utils/constants.ts";
+import { getIdFromUrl } from "utils/helpers";
+import { TPerson } from "utils/models";
 
+// TODO: create AdvancedTable component which takes cols, data, pagination and draws a table
 export const Home = () => {
   const navigate = useNavigate();
+  const { tableData, tableLoading, pagination } = useTable<TPerson>({
+    model: SWAPIModels.People,
+  });
 
   const [searchValue, setSearchValue] = useState("");
-  const { data, isLoading } = useQuery([], () =>
-    axiosClient.get<TDataResponse<TCharacter[]>>(`/people`),
-  );
 
-  const handleViewCharacter = (characterName: string) => {
-    navigate(`${RouteNames.Character}/${characterName}`);
+  const handleViewCharacter = (characterName?: string | null) => {
+    if (!characterName) return;
+    navigate(`${RouteNames.People}/${characterName}`);
   };
 
   return (
@@ -40,7 +42,7 @@ export const Home = () => {
       <TableContainer>
         <TableTools>
           <TableToolsLeft>
-            <TableTitle title={"My escrows"} count={0} />
+            <TableTitle title="Characters" count={pagination.totalItems} />
           </TableToolsLeft>
           <TableToolsRight>
             <TableSearch value={searchValue} setValue={setSearchValue} />
@@ -59,14 +61,12 @@ export const Home = () => {
                 </TableHeaderRow>
               </TableHeader>
               <TableBody>
-                {data?.data?.results.map((person) => {
+                {tableData.map((person) => {
                   return (
                     <TableRow
                       key={person.url}
                       onClick={() =>
-                        handleViewCharacter(
-                          person.url.charAt(person.url.length),
-                        )
+                        handleViewCharacter(getIdFromUrl(person.url))
                       }
                     >
                       <TableBodyCell>{person.name}</TableBodyCell>
@@ -85,18 +85,14 @@ export const Home = () => {
                 })}
               </TableBody>
             </Table>
-            {isLoading && (
+            {tableLoading && (
               <div className="py-4">
                 <Loader />
               </div>
             )}
           </div>
           <TableTools>
-            <Pagination
-              paginationRange={[0, "---", 3, 4, 5, 6, 7, "---", 10]}
-              currentPage={3}
-              onPageChange={(page) => console.log(page)}
-            />
+            <Pagination {...pagination} />
           </TableTools>
         </>
       </TableContainer>

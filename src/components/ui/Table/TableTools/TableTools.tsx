@@ -10,7 +10,7 @@ export const TableTools = ({
   return (
     <div
       className={[
-        "w-full h-[40px] flex justify-center px-[22px] mb-[32px]",
+        "w-full h-[40px] flex justify-center mb-[32px]",
         className,
       ].join(" ")}
     >

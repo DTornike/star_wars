@@ -6,13 +6,9 @@ export const TableTitle = ({
   count?: string | number;
 }) => {
   return (
-    <div>
-      <span className={"text-headerTwo font-medium text-secondary"}>
-        {title}
-      </span>{" "}
-      {!!count && (
-        <span className={"text-headerOneS text-gray"}>({count})</span>
-      )}
+    <div className="h-full flex items-center gap-2">
+      <span className={"text-header font-medium text-secondary"}>{title}</span>{" "}
+      {!!count && <span className={"text-header text-gray"}>({count})</span>}
     </div>
   );
 };

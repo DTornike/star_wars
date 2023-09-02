@@ -1,12 +1,12 @@
 import axios, { AxiosInstance } from "axios";
 
-const { VITE_API_URL } = import.meta.env;
+const { VITE_API_URL } = import.meta.env || "ENV_NOT_CONFIGURED";
 
-export const axiosClient: AxiosInstance = axios.create({
+const axiosClient: AxiosInstance = axios.create({
   baseURL: VITE_API_URL,
 });
 
-export enum ButtonTypes {
+enum ButtonTypes {
   primary = "primary",
   transparent = "transparent",
   actions = "actionsActive",
@@ -14,7 +14,18 @@ export enum ButtonTypes {
   dotted = "dotted",
 }
 
-export enum RouteNames {
+enum RouteNames {
   Home = "home",
-  Character = "character",
+  People = "people",
 }
+
+enum SWAPIModels {
+  People = "people",
+  Planets = "planets",
+  Films = "films",
+  Species = "species",
+  Vehicles = "vehicles",
+  Starships = "starships",
+}
+
+export { axiosClient, ButtonTypes, RouteNames, SWAPIModels };
